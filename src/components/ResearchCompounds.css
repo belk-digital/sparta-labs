@@ -1,0 +1,302 @@
+.research-section {
+  padding: 6rem 0;
+  background-color: var(--bg-color);
+}
+
+.research-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.research-header-logo {
+  width: 40px;
+  height: 50px;
+  margin-bottom: 1.5rem;
+}
+
+.research-title {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+.view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.view-all-btn:hover {
+  background: var(--hover-bg);
+  border-color: #d0d0d0;
+}
+
+.compounds-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.compound-card {
+  background: #f6f6f6;
+  border-radius: 12px;
+  padding: 32px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-color);
+  width: 180px;
+  height: 28px;
+  clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.notch-text {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: #333;
+  display: flex;
+  align-items: center;
+  margin-top: -2px;
+}
+
+.compound-card-top {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+}
+
+.card-logo {
+  width: 24px;
+  height: 28px;
+}
+
+.check-icon {
+  margin-right: 4px;
+}
+
+.compound-image {
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  margin-top: 10px;
+}
+
+.compound-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.compound-info {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.compound-category {
+  font-size: 0.7rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.compound-name {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.compound-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.compound-price {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.compound-tags {
+  display: flex;
+  gap: 4px;
+}
+
+.compound-tag {
+  font-size: 0.65rem;
+  font-weight: 500;
+  background: #e4e4e4;
+  color: #666;
+  padding: 2px 6px;
+  border-radius: 12px;
+}
+
+.compound-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.add-to-cart-btn {
+  flex: 1;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-to-cart-btn:hover {
+  background: #000;
+}
+
+.add-to-cart-btn.in-cart {
+  background: #333;
+}
+
+.qty-selector {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 90px;
+}
+
+.qty-btn {
+  width: 30px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.qty-btn:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.qty-value {
+  flex: 1;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #111;
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .compounds-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .compounds-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding-bottom: 24px;
+    /* Hide scrollbar for cleaner look */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .compounds-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .compound-card {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+    padding: 32px 24px 24px;
+  }
+
+  .compound-name {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+
+  .compound-image {
+    height: 200px;
+  }
+
+  .compound-price {
+    font-size: 1rem;
+  }
+
+  .compound-tag {
+    font-size: 0.65rem;
+  }
+
+  .card-notch {
+    width: 180px;
+    height: 28px;
+  }
+
+  .notch-text {
+    font-size: 0.65rem;
+  }
+
+  .compound-actions {
+    flex-direction: row;
+  }
+
+  .qty-selector {
+    width: 90px;
+    height: auto;
+  }
+
+  .add-to-cart-btn {
+    padding: 12px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .compound-card {
+    flex: 0 0 90%;
+  }
+}

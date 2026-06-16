@@ -1,0 +1,216 @@
+.accordion-categories-section {
+  padding: 8rem 0;
+  background-color: #ffffff; /* Light theme */
+  overflow: hidden;
+}
+
+.accordion-categories-container {
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.accordion-categories-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 600px;
+}
+
+.accordion-categories-title {
+  font-family: 'Neue Haas Grotesk Display', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.title-strikethrough {
+  text-decoration: line-through;
+  color: #888;
+  font-weight: 400;
+}
+
+.accordion-categories-subtitle {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.accordion-container {
+  display: flex;
+  height: 500px;
+  gap: 12px; /* Small gap between panels */
+  width: 100%;
+  justify-content: center;
+}
+
+.accordion-card {
+  position: relative;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.accordion-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.accordion-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: background 0.4s ease;
+}
+
+/* Light theme overlay for inactive cards to make white vertical text readable or we use dark text */
+.inactive-overlay {
+  background: rgba(255, 255, 255, 0.5); /* Frosted light look */
+  backdrop-filter: grayscale(100%) opacity(0.2);
+}
+
+/* For active card, a subtle gradient from bottom so white text is readable if we want, or just light gradient */
+.active-overlay {
+  background: linear-gradient(to top, rgba(255,255,255, 0.95) 0%, rgba(255,255,255, 0.6) 40%, transparent 100%);
+}
+
+.accordion-card-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none; /* Let clicks pass to the card */
+}
+
+/* Vertical Title for Inactive State */
+.accordion-vertical-title {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform-origin: top left;
+  transform: rotate(90deg) translateY(-50%);
+  white-space: nowrap;
+  font-family: 'Neue Haas Grotesk Display', sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: #111; /* Dark text for light theme */
+  letter-spacing: 0.05em;
+}
+
+/* Active Content */
+.accordion-active-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  pointer-events: auto; /* Re-enable for the button */
+}
+
+.accordion-active-title {
+  font-family: 'Neue Haas Grotesk Display', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.accordion-active-desc {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  max-width: 90%;
+}
+
+.accordion-explore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #111;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  width: fit-content;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+
+.accordion-explore-btn:hover {
+  background: #000;
+}
+
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Bottom Icon */
+.accordion-bottom-icon {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #111;
+  transition: opacity 0.3s ease;
+}
+
+.accordion-bottom-icon.active-icon {
+  opacity: 0; /* Hide the generic bottom icon when active, as it's in the button */
+}
+
+@media (max-width: 1024px) {
+  .accordion-container {
+    height: 400px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .accordion-container {
+    flex-direction: column;
+    height: 650px;
+    width: 100%;
+  }
+  
+  .accordion-card {
+    width: 100%;
+  }
+  
+  .accordion-vertical-title {
+    top: 50%;
+    left: 1.5rem;
+    transform: translateY(-50%); /* Removed rotation for horizontal text */
+    transform-origin: center left;
+  }
+  
+  .accordion-bottom-icon {
+    bottom: 50%;
+    left: auto;
+    right: 1.5rem;
+    transform: translateY(50%);
+  }
+}

@@ -1,0 +1,342 @@
+.about-us-section {
+  padding: 8rem 0;
+  background-color: var(--bg-color, #ffffff);
+  color: var(--text-primary, #111111);
+  overflow: hidden;
+}
+
+.about-us-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+/* Header Area */
+.about-us-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.about-us-title-area {
+  max-width: 900px;
+}
+
+.about-us-subtitle {
+  display: block;
+  color: var(--accent-color, #D31118);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.about-us-title {
+  font-family: 'Neue Haas Grotesk Display', sans-serif;
+  font-size: 42px;
+  line-height: 1.2;
+  font-weight: 500;
+  color: #111111;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.about-us-title .text-gray {
+  color: #999999;
+}
+
+.about-us-logo-area {
+  flex-shrink: 0;
+  padding-top: 1rem;
+}
+
+/* Content Area */
+.about-us-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.about-us-controls {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.nav-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid #111111;
+  background: #111111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: #333333;
+  border-color: #333333;
+}
+
+.about-us-cards {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Image Card */
+.image-card {
+  position: relative;
+  width: 800px;
+  height: 380px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.about-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.about-card-img.active {
+  opacity: 1;
+}
+
+.image-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.6) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+}
+
+.image-card-bottom h3 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.image-card-description {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.5;
+  max-width: 600px;
+}
+
+.slider-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.slider-dots .dot {
+  height: 2px;
+  width: 30px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 1px;
+}
+
+.slider-dots .dot.active {
+  background: #ffffff;
+}
+
+/* Arrivals Card */
+.arrivals-card {
+  position: relative;
+  width: 340px;
+  height: 380px;
+  border-radius: 8px;
+  background-color: transparent;
+  border: 1px solid #eaeaea;
+  overflow: hidden;
+}
+
+.arrivals-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.arrivals-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(211, 17, 24, 0.3) 100%);
+  z-index: 1;
+}
+
+.arrivals-content-wrapper {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.arrivals-header h3 {
+  font-size: 1.25rem;
+  color: #ffffff;
+  font-weight: 500;
+  margin: 0;
+}
+
+.arrivals-body {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrivals-icons-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
+
+.hex-icon {
+  position: relative;
+  z-index: 1;
+}
+
+.hex-overlap {
+  margin-left: -15px;
+  z-index: 2;
+  filter: drop-shadow(-4px 0 10px rgba(255, 255, 255, 0.5));
+}
+
+.arrivals-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pill-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.pill-btn.outline {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #ffffff;
+}
+
+.pill-btn.outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.pill-btn.solid {
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #ffffff;
+}
+
+.pill-btn.solid:hover {
+  background: #f0f0f0;
+  border-color: #f0f0f0;
+}
+
+.arrow-circle {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .about-us-section {
+    padding: 5rem 0;
+  }
+
+  .about-us-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .about-us-cards {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+  }
+
+  .image-card, .arrivals-card {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-us-container {
+    gap: 3rem;
+  }
+
+  .about-us-title {
+    font-size: 2.25rem;
+  }
+
+  .about-us-header {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .about-us-logo-area {
+    display: none; /* Hide the large logo shape on mobile to save space */
+  }
+
+  .about-us-cards {
+    flex-direction: column;
+    overflow-x: visible;
+    gap: 2rem;
+  }
+
+  .image-card, .arrivals-card {
+    width: 100%;
+    min-height: 380px;
+    height: auto;
+  }
+
+  .image-card-description {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .about-us-controls {
+    align-self: center;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-us-title {
+    font-size: 1.75rem;
+  }
+}
