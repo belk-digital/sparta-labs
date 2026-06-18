@@ -90,7 +90,7 @@ const AgeGate = ({ onVerify }) => {
               variants={itemVariants}
               className="mb-12 text-[1.1rem] leading-[1.6] font-light text-white/90 font-['Neue_Haas_Grotesk_Text',sans-serif]"
             >
-              You must be 18 years or older to access this website.
+              You must be 21 years or older to access this website.
               <br />
               All products are for research use only.
             </motion.p>
@@ -100,7 +100,7 @@ const AgeGate = ({ onVerify }) => {
                 className="inline-flex w-auto items-center justify-center rounded border border-white bg-white px-8 py-3.5 text-[15px] font-semibold tracking-[1.5px] text-black uppercase transition-all duration-300 font-['Neue_Haas_Grotesk_Text',sans-serif] hover:border-[#e0e0e0] hover:bg-[#e0e0e0] max-[600px]:w-full"
                 onClick={handleVerify}
               >
-                I Am 18+
+                I Am 21+
               </button>
               <button
                 className="inline-flex w-auto items-center justify-center rounded border border-white/40 bg-white/5 px-8 py-3.5 text-[15px] font-semibold tracking-[1.5px] text-white uppercase transition-all duration-300 font-['Neue_Haas_Grotesk_Text',sans-serif] hover:border-white hover:bg-white/15 max-[600px]:w-full"
