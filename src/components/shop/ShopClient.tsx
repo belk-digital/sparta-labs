@@ -1,15 +1,12 @@
 'use client'
 
-import React, { useState, useEffect, Suspense } from 'react'
+import React, { useState, useEffect, useRef, useCallback, Suspense } from 'react'
 import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 import { Container } from '@/components/ui/container'
 import { FilterSidebar } from '@/components/shop/FilterSidebar'
 import { PrimaryProductCard, Product } from '@/components/shop/PrimaryProductCard'
-import { StaggerChildren, staggerItemVariants } from '@/components/motion/StaggerChildren'
-import { motion, useInView, useScroll, useTransform } from 'framer-motion'
-import { X, ChevronRight, Filter, Search } from 'lucide-react'
-import Link from 'next/link'
-import Image from 'next/image'
+import { motion, useInView } from 'framer-motion'
+import { X, Filter, Search } from 'lucide-react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Spinner } from '@/components/ui/spinner'
 import { EmptyState } from '@/components/shared/EmptyState'
@@ -56,11 +53,14 @@ function ShopClientInner({ initialProducts, totalPages, categories }: ShopClient
   const loadMoreRef = React.useRef<HTMLDivElement>(null)
   const isInView = useInView(loadMoreRef, { margin: "400px" })
 
-  // Hero Parallax
-  const { scrollYProgress: heroScroll } = useScroll({
-    offset: ["start start", "end start"]
-  });
-  const heroImageY = useTransform(heroScroll, [0, 1], ["0%", "100%"]);
+  const heroVideoRef = useRef<HTMLVideoElement>(null)
+
+  const handleVideoEnded = useCallback(() => {
+    const video = heroVideoRef.current
+    if (video) {
+      video.pause()
+    }
+  }, [])
 
   // Filter update trigger
   useEffect(() => {
@@ -147,82 +147,63 @@ function ShopClientInner({ initialProducts, totalPages, categories }: ShopClient
 
   return (
     <div className="w-full bg-[#f3f4f6] min-h-screen">
-      {/* 1. Interactive Window Hero Section */}
-      <section className="relative min-h-[90vh] lg:min-h-[100dvh] flex flex-col items-center justify-center pt-24 lg:pt-32 pb-16 overflow-hidden bg-white mb-12">
-        
-        {/* Background Marquee */}
-        <div className="absolute bottom-4 left-0 w-full overflow-hidden whitespace-nowrap flex z-0 pointer-events-none">
-          <div className="animate-marquee flex items-center whitespace-nowrap w-max opacity-[0.04]">
-              {Array(4).fill(0).map((_, i) => (
-                <span key={i} className="text-[12vw] lg:text-[7vw] xl:text-[5vw] font-serif uppercase tracking-tighter mx-8 text-ink">
-                  PEPTIDES &bull; COMPOUNDS &bull; PURITY &bull; 
-                </span>
-             ))}
-          </div>
-        </div>
+      {/* Video Hero Section */}
+      <motion.section
+        className="relative h-[75vh] flex items-end overflow-hidden bg-black"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: { staggerChildren: 0.2, delayChildren: 0.1 },
+          },
+        }}
+      >
+        {/* Background Video */}
+        <video
+          ref={heroVideoRef}
+          autoPlay
+          muted
+          playsInline
+          onEnded={handleVideoEnded}
+          className="absolute inset-0 w-full h-full object-cover"
+          src="https://res.cloudinary.com/dgrrovta3/video/upload/v1781820202/Firefly_Create_a_premium_pharmaceutical_product_reveal_animation._Start_with_a_clean_deep-red_textur_c0rts2.webm"
+        />
 
-        {/* Foreground Content */}
-        <div className="relative z-10 w-full flex flex-col items-center justify-center px-4 h-full flex-1">
-          
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-label-md uppercase tracking-widest text-[#5984c4] mb-4 sm:mb-8 font-bold"
-          >
-            Our Catalog
-          </motion.h2>
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent" />
 
-          {/* The Interactive Window */}
-          <motion.div 
-            initial={{ width: '90%', height: '40vh', borderRadius: '3rem' }}
-            whileHover={{ width: '98%', height: '60vh', borderRadius: '1.5rem' }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative overflow-hidden shadow-2xl cursor-pointer group my-8 md:my-12 max-w-[1600px] w-full transform-gpu"
-            style={{ width: '85%' }}
+        {/* Hero Content — aligned with navbar padding */}
+        <div className="relative z-10 w-full px-4 md:px-8 lg:px-10 pb-12 sm:pb-16 lg:pb-20">
+          <motion.h1
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
+            }}
+            className="mb-6 text-[2.5rem] leading-[1.05] font-normal tracking-[-1.5px] text-white min-[480px]:text-[3rem] md:text-[4.5rem] uppercase"
           >
-             <motion.div 
-               className="w-full relative transform-gpu"
-               style={{ height: '150%', top: '-25%', y: heroImageY, willChange: 'transform' }}
-               animate={{ scale: [1, 1.05, 1] }}
-               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-             >
-               <Image 
-                 src="/hero-image.png" 
-                 alt="Research Catalog" 
-                 fill 
-                 className="object-cover object-center"
-                 priority
-               />
-               <div className="absolute inset-0 bg-[#5984c4]/20 group-hover:bg-[#5984c4]/10 transition-colors duration-700" />
-             </motion.div>
-             
-             {/* Center Overlay Text inside Window */}
-             <div className="absolute inset-0 flex items-center justify-center pointer-events-none p-4">
-                <motion.h1 
-                  className="text-center text-[6vw] sm:text-[7vw] md:text-[8vw] lg:text-[6vw] font-serif text-white leading-none tracking-tight mix-blend-overlay opacity-90 whitespace-nowrap transform-gpu"
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 1, delay: 0.4 }}
-                >
-                  THE COMPLETE COLLECTION
-                </motion.h1>
-             </div>
-          </motion.div>
+            The Complete
+            <br />
+            Collection
+          </motion.h1>
 
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-body-lg lg:text-xl text-ink/70 max-w-[720px] mx-auto text-center mt-6 sm:mt-12 leading-relaxed px-6"
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
+            }}
+            className="text-[1rem] leading-[1.6] font-light text-white/85 md:text-[1.1rem] max-w-[480px]"
           >
-            Explore our complete catalog of research-grade peptides and compounds. Filter by category, purity, and availability to find exactly what your guideline requires.
+            Explore our complete catalog of research-grade peptides and compounds.
+            Filter by category, purity, and availability to find exactly what your
+            guideline requires.
           </motion.p>
-
         </div>
-      </section>
+      </motion.section>
 
-      <Container size="page" className="pb-12" id="products-grid">
+      <Container size="page" className="pt-12 pb-12" id="products-grid">
         {/* Top Toolbar */}
         <div className={`flex flex-col gap-3 sm:gap-4 mb-6 sm:mb-8 bg-white/95 backdrop-blur-xl border border-ink/10 p-3 sm:p-4 rounded-2xl shadow-sm sticky z-30 transition-all duration-300 ${isScrollingDown ? 'top-4 sm:top-6' : 'top-[110px] sm:top-[120px]'}`}>
           {/* Top Row: Buttons */}

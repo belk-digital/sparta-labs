@@ -5,18 +5,7 @@ import { Skeleton, ProductCardSkeleton } from '@/components/ui/skeleton'
 export default function ShopLoading() {
   return (
     <div className="w-full bg-cream min-h-screen">
-      {/* Hero Section Skeleton */}
-      <section className="relative w-full overflow-hidden bg-cream pt-32 pb-12 sm:pt-40 sm:pb-24">
-        <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          {/* Hero Banner Skeleton */}
-          <Skeleton className="h-[300px] sm:h-[400px] md:h-[500px] w-full rounded-[48px] mx-auto" />
-          {/* Hero Text Skeleton */}
-          <Skeleton className="h-6 w-3/4 max-w-[720px] mx-auto mt-6 sm:mt-12" />
-          <Skeleton className="h-6 w-1/2 max-w-[500px] mx-auto mt-3" />
-        </div>
-      </section>
-
-      <Container size="page" className="pb-12">
+      <Container size="page" className="pt-12 pb-12">
         {/* Top Toolbar Skeleton */}
         <div className="flex flex-col gap-3 sm:gap-4 mb-6 sm:mb-8 bg-white/95 border border-border-subtle p-3 sm:p-4 rounded-2xl shadow-sm">
           {/* Top Row: Buttons */}
