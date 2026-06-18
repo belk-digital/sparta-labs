@@ -4,10 +4,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, Loader2 } from 'lucide-react'
-import { Space_Grotesk } from 'next/font/google'
 import { useRouter } from 'next/navigation'
-
-const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], weight: ['300', '400', '500', '700'] })
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -61,7 +58,7 @@ export default function RegisterPage() {
 
       {/* Left Column */}
       <div className="w-full lg:w-[45%] relative min-h-[30vh] lg:min-h-screen order-first lg:order-none flex flex-col justify-between p-8 lg:p-12 border-b lg:border-b-0 lg:border-r border-gray-100 overflow-hidden">
-        <Image src="/img-1.webp" alt="Laboratory" fill className="object-cover object-center z-0" priority />
+        <Image src="https://res.cloudinary.com/denskvdyt/image/upload/v1781825980/sparta-peptide-lab-image_yp7lht.webp" alt="Laboratory" fill className="object-cover object-center z-0" priority unoptimized />
         <div className="absolute inset-0 bg-black/40 z-0 pointer-events-none" />
 
         <div className="relative z-10 flex justify-between items-center w-full">
@@ -73,7 +70,7 @@ export default function RegisterPage() {
 
         <div className="relative z-10 flex flex-col justify-center h-full max-w-sm mt-12 lg:mt-0 drop-shadow-md">
           <h2 className="text-[10px] font-bold text-white/80 tracking-[0.25em] uppercase mb-6">Join The Lab</h2>
-          <h1 className={`text-4xl lg:text-5xl leading-[1.1] font-bold tracking-tighter text-white mb-6 ${spaceGrotesk.className}`}>
+          <h1 className={`text-4xl lg:text-5xl leading-[1.1] font-bold tracking-tighter text-white mb-6 font-[family-name:var(--font-inter)]`}>
             Create an account to begin.
           </h1>
           <p className="text-white/80 text-sm leading-relaxed max-w-[320px]">
@@ -85,7 +82,7 @@ export default function RegisterPage() {
       {/* Right Column */}
       <div className="w-full lg:w-[55%] flex items-center justify-center p-8 lg:p-24 bg-white">
         <div className="w-full max-w-[420px] flex flex-col">
-          <h1 className={`text-2xl font-bold tracking-tight text-black mb-1 ${spaceGrotesk.className}`}>Create an account</h1>
+          <h1 className={`text-2xl font-bold tracking-tight text-black mb-1 font-[family-name:var(--font-inter)]`}>Create an account</h1>
           <p className="text-sm text-gray-500 mb-8">Join Sparta Labs today</p>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
