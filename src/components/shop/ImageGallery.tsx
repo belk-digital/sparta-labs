@@ -6,8 +6,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motio
 import useEmblaCarousel from 'embla-carousel-react'
 import { X, Maximize2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
-import { DialogClose } from '@radix-ui/react-dialog'
+import { Dialog, DialogContent, DialogTitle, DialogClose } from '@/components/ui/dialog'
 
 export interface ImageGalleryProps {
   images: string[]

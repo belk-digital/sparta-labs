@@ -269,7 +269,7 @@ export async function createPayloadOrder(
   const total = totalBeforePoints - pointsToRedeem
 
   try {
-    const payloadUserId = userId || null
+    const payloadUserId = userId ? Number(userId) : null
 
     // Format order items for Payload
     const orderItems = items.map(item => {

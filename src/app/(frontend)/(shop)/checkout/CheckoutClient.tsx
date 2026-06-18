@@ -65,7 +65,7 @@ export function CheckoutClient() {
       
       setFormData(prev => ({
         ...prev,
-        email: user.primaryEmailAddress?.emailAddress || prev.email,
+        email: user.email || prev.email,
         firstName: user.firstName || prev.firstName,
         lastName: user.lastName || prev.lastName,
       }))
@@ -247,9 +247,9 @@ export function CheckoutClient() {
       const { createPayloadOrder } = await import('./actions')
       const orderRes = await createPayloadOrder(
         items, shippingMethod, appliedCoupon?.code, isRedeemingPoints, 
-        { ...formData, email: user?.primaryEmailAddress?.emailAddress || formData.email }, 
-        'free_order', 
-        user?.id as string
+        { ...formData, email: user?.email || formData.email },
+        'free_order',
+        user?.id != null ? String(user.id) : undefined
       )
 
       if (orderRes.error || !orderRes.orderId) {
@@ -661,7 +661,7 @@ export function CheckoutClient() {
                        isRedeemingPoints={isRedeemingPoints}
                        formData={formData}
                        paymentIntentId={paymentIntentId}
-                       userId={user?.id}
+                       userId={user?.id != null ? String(user.id) : undefined}
                     />
                   </Elements>
                 ) : (

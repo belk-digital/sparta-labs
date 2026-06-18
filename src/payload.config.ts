@@ -126,7 +126,7 @@ export default buildConfig({
       },
     },
   }),
-  sharp,
+  sharp: sharp as any,
   plugins: [
     ...(process.env.R2_BUCKET ? [
       s3Storage({
