@@ -9,7 +9,7 @@
   border-bottom: 1px solid transparent;
   padding-top: 1rem;
   padding-bottom: 0.5rem;
-  
+
   /* Color Variables for contrast toggling */
   --nav-text: #ffffff;
   --nav-border: rgba(255, 255, 255, 0.4);
@@ -22,7 +22,7 @@
   background: var(--bg-color);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   border-bottom: 1px solid var(--border-color);
-  
+
   --nav-text: var(--text-primary);
   --nav-border: #000000;
   --nav-placeholder: var(--text-light);
@@ -246,7 +246,7 @@
   .navbar-top {
     padding: 0 16px;
   }
-  
+
   .logo-text {
     display: none;
   }
@@ -268,7 +268,7 @@
   .nav-icons {
     gap: 0.75rem;
   }
-  
+
   .side-panel {
     max-width: 80%;
   }
@@ -278,7 +278,7 @@
   .navbar-top {
     padding: 0 10px;
   }
-  
+
   .nav-logo-svg {
     width: 28px;
     height: 36px;
