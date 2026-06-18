@@ -169,7 +169,7 @@ function ShopClientInner({ initialProducts, totalPages, categories }: ShopClient
           playsInline
           onEnded={handleVideoEnded}
           className="absolute inset-0 w-full h-full object-cover"
-          src="https://res.cloudinary.com/dgrrovta3/video/upload/v1781820202/Firefly_Create_a_premium_pharmaceutical_product_reveal_animation._Start_with_a_clean_deep-red_textur_c0rts2.webm"
+          src="https://res.cloudinary.com/dgrrovta3/video/upload/v1781823079/Firefly_Create_a_premium_pharmaceutical_product_reveal_animation._Start_with_a_clean_deep-red_textur_uyroig.webm"
         />
 
         {/* Dark overlay for text readability */}
