@@ -10,7 +10,7 @@ async function run() {
   
   console.log('Total users:', users.totalDocs)
   users.docs.forEach(u => {
-    console.log(`User: ${u.email}, Clerk ID: ${u.clerkUserId}, ID: ${u.id}`)
+    console.log(`User: ${u.email}, ID: ${u.id}`)
   })
   
   const wishlists = await payload.find({
