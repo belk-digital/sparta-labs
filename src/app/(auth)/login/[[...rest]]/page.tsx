@@ -4,13 +4,23 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, Loader2 } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { GoogleSignInButton } from '@/components/auth/GoogleSignInButton'
+
+const GOOGLE_ERROR_MESSAGES: Record<string, string> = {
+  google_denied: 'Google sign-in was cancelled.',
+  google_no_email: 'Could not retrieve email from Google.',
+  google_state_mismatch: 'Authentication failed. Please try again.',
+  google_server_error: 'Something went wrong with Google sign-in.',
+}
 
 export default function LoginPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
+  const googleError = searchParams.get('error')
+  const [error, setError] = useState(googleError ? (GOOGLE_ERROR_MESSAGES[googleError] || 'Google sign-in failed.') : '')
   const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -71,6 +81,14 @@ export default function LoginPage() {
         <div className="w-full max-w-[420px] flex flex-col">
           <h1 className={`text-2xl font-bold tracking-tight text-black mb-1 font-[family-name:var(--font-inter)]`}>Welcome back</h1>
           <p className="text-sm text-gray-500 mb-8">Sign in to your Sparta Labs account</p>
+
+          <GoogleSignInButton redirect="/account" className="h-14 rounded-none" />
+
+          <div className="flex items-center gap-3 my-4">
+            <div className="flex-1 h-px bg-gray-200" />
+            <span className="text-[10px] text-gray-400 uppercase tracking-widest">or</span>
+            <div className="flex-1 h-px bg-gray-200" />
+          </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div className="flex flex-col gap-2">

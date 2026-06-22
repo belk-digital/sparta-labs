@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { GoogleSignInButton } from '@/components/auth/GoogleSignInButton'
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -86,6 +87,14 @@ export default function RegisterPage() {
         <div className="w-full max-w-[420px] flex flex-col">
           <h1 className={`text-2xl font-bold tracking-tight text-black mb-1 font-[family-name:var(--font-inter)]`}>Create an account</h1>
           <p className="text-sm text-gray-500 mb-8">Join Sparta Labs today</p>
+
+          <GoogleSignInButton redirect="/account" className="h-14 rounded-none" />
+
+          <div className="flex items-center gap-3 my-4">
+            <div className="flex-1 h-px bg-gray-200" />
+            <span className="text-[10px] text-gray-400 uppercase tracking-widest">or</span>
+            <div className="flex-1 h-px bg-gray-200" />
+          </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div className="flex flex-col gap-2">

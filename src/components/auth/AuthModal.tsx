@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Loader2 } from 'lucide-react'
 import Image from 'next/image'
+import { GoogleSignInButton } from './GoogleSignInButton'
 
 export interface AuthModalProps {
   open: boolean
@@ -151,6 +152,14 @@ export function AuthModal({ open, onOpenChange, defaultView = 'login' }: AuthMod
                 {view === 'login' ? 'Sign in to your Sparta Labs account' : 'Join Sparta Labs today'}
               </p>
             </DialogHeader>
+
+            <GoogleSignInButton className="mb-2" />
+
+            <div className="flex items-center gap-3 my-1">
+              <div className="flex-1 h-px bg-gray-200" />
+              <span className="text-[10px] text-gray-400 uppercase tracking-widest">or</span>
+              <div className="flex-1 h-px bg-gray-200" />
+            </div>
 
             <form onSubmit={view === 'login' ? handleLogin : handleRegister} className="flex flex-col gap-4">
               <div className="flex flex-col gap-1.5">

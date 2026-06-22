@@ -97,6 +97,28 @@ export const Users: CollectionConfig = {
       },
     },
     {
+      name: 'googleId',
+      type: 'text',
+      unique: true,
+      admin: {
+        readOnly: true,
+        condition: ({ user }) => !!user?.role && ['admin', 'staff'].includes(user.role),
+      },
+    },
+    {
+      name: 'authProvider',
+      type: 'select',
+      defaultValue: 'email',
+      options: [
+        { label: 'Email', value: 'email' },
+        { label: 'Google', value: 'google' },
+      ],
+      admin: {
+        readOnly: true,
+        condition: ({ user }) => !!user?.role && ['admin', 'staff'].includes(user.role),
+      },
+    },
+    {
       name: 'metadata',
       type: 'json',
     },

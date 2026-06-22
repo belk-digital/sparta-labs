@@ -218,6 +218,8 @@ export interface User {
   defaultShippingAddress?: (number | null) | Address;
   defaultBillingAddress?: (number | null) | Address;
   lastLoginAt?: string | null;
+  googleId?: string | null;
+  authProvider?: ('email' | 'google') | null;
   metadata?:
     | {
         [k: string]: unknown;
@@ -1370,6 +1372,8 @@ export interface UsersSelect<T extends boolean = true> {
   defaultShippingAddress?: T;
   defaultBillingAddress?: T;
   lastLoginAt?: T;
+  googleId?: T;
+  authProvider?: T;
   metadata?: T;
   maxxPoints?: T;
   updatedAt?: T;
