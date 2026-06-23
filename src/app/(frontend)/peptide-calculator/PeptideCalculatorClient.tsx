@@ -4,8 +4,9 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FadeUp } from '@/components/motion/FadeUp'
 import { StaggerChildren, staggerItemVariants } from '@/components/motion/StaggerChildren'
-import { ArrowLeft, ShieldCheck, Info, Beaker, Thermometer, Syringe, Droplets, FlaskConical, AlertTriangle, BookOpen, Calculator, ChevronDown } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ShieldCheck, Info, Beaker, Thermometer, Syringe, Droplets, FlaskConical, AlertTriangle, BookOpen, Calculator, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { FaqItem } from '@/components/shared/FaqCarousel'
 import FAQ from '@/components/FAQ'
 
@@ -504,87 +505,52 @@ export default function PeptideCalculatorPage() {
       {/* ============================================
           SECTION 2: HOW TO USE — STEP-BY-STEP GUIDE
           ============================================ */}
-      <section className="py-24 lg:py-48 px-6 bg-white relative">
-        
-        {/* Dot Grid Background */}
-        <div className="absolute inset-0 pointer-events-none z-0 opacity-40" style={{ backgroundImage: "radial-gradient(#D6CDB8 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
-
-        {/* Rotating Ring */}
-        <motion.div 
-          animate={{ rotate: 360 }}
-          transition={{ duration: 150, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[5%] -right-[15%] w-[50vw] h-[50vw] border-[1px] border-ink/5 rounded-full pointer-events-none z-0"
-        />
-
-        {/* Background Watermark */}
-        <div className="absolute top-[10%] left-0 w-full pointer-events-none z-0 overflow-hidden">
-          <span className="text-[16vw] font-sans text-ink/[0.02] leading-none select-none tracking-tighter whitespace-nowrap">
-            GUIDELINE
-          </span>
-        </div>
-
-        <div className="max-w-[900px] mx-auto relative z-10">
-          
-          <FadeUp className="text-center mb-24 lg:mb-40">
-            <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-gold mb-6 font-bold">Step-by-Step Guide</h2>
-            <h3 className="text-4xl lg:text-6xl font-sans text-ink tracking-tight mb-6">Step-by-Step Guide: How to Reconstitute a Research Peptide</h3>
-            <p className="text-lg lg:text-xl text-ink/50 font-light leading-relaxed max-w-2xl mx-auto">
-              Follow this four-step workflow to calculate the exact IU syringe mark, solution concentration, draw volume, and total doses for any research peptide reconstitution. Each step takes less than 30 seconds. The calculator handles all the math — no spreadsheet or manual formula required.
-            </p>
+      <section className="bg-white text-ink py-20 lg:py-32 px-4 md:px-8 lg:px-10">
+        <div className="max-w-[1400px] mx-auto w-full">
+          <FadeUp>
+            <div className="flex flex-col mb-16 lg:mb-24">
+              <h2 className="text-[2.5rem] leading-[1.1] font-normal tracking-[-1.5px] text-ink min-[480px]:text-[3rem] md:text-[4rem] lg:text-[4.5rem] uppercase mb-6">
+                Step-by-Step Guide
+              </h2>
+              <p className="text-base lg:text-lg text-ink-muted leading-relaxed font-light max-w-2xl">
+                Follow this four-step workflow to calculate the exact IU syringe mark, solution concentration, draw volume, and total doses for any research peptide reconstitution. Each step takes less than 30 seconds. The calculator handles all the math — no spreadsheet or manual formula required.
+              </p>
+            </div>
           </FadeUp>
 
-          <div className="relative w-full pb-[20vh]">
-            
+          <div className="flex flex-col gap-12 lg:gap-16">
             {/* Step 1 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-              className="sticky top-20 lg:top-32 w-full rounded-[2.5rem] lg:rounded-[3.5rem] p-10 lg:p-16 border border-ink/5 bg-white shadow-[0_8px_40px_rgba(0,0,0,0.03)] overflow-hidden group mb-8 lg:mb-12"
-              style={{ zIndex: 10 }}
-            >
-              <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.4] mix-blend-multiply z-0">
-                <filter id="noiseStep1">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
-                </filter>
-                <rect width="100%" height="100%" filter="url(#noiseStep1)" />
-              </svg>
-              
-              <div className="relative z-10 grid grid-cols-1 md:grid-cols-[100px_1fr] lg:grid-cols-[160px_1fr] gap-8 lg:gap-16 items-stretch">
-                <div className="flex flex-row md:flex-col justify-between items-end md:items-start border-b md:border-b-0 md:border-r border-ink/10 pb-6 md:pb-0 md:pr-8">
-                  <span className="text-5xl lg:text-8xl font-sans text-ink tracking-tighter leading-none">01</span>
-                  <Syringe className="w-8 h-8 lg:w-12 lg:h-12 text-ink/30 mt-0 md:mt-12" strokeWidth={1} />
-                </div>
-                
-                <div className="flex flex-col justify-center py-2 lg:py-4">
-                  <h3 className="text-4xl lg:text-5xl font-sans text-ink mb-6 lg:mb-8 tracking-tight leading-[1.1]">Step 01: Select Your Insulin Syringe (0.3ml, 0.5ml, or 1.0ml)</h3>
-                  <p className="text-lg lg:text-xl text-ink/70 leading-relaxed max-w-3xl font-light mb-6">
+            <FadeUp>
+              <div className="grid grid-cols-1 lg:grid-cols-[100px_1fr] gap-8 items-start border-t border-ink/10 pt-12">
+                <span className="text-4xl lg:text-5xl font-sans text-red-400 tracking-tighter leading-none mt-1">01</span>
+                <div className="flex flex-col">
+                  <h3 className="text-2xl lg:text-3xl font-normal text-ink uppercase tracking-tight mb-6">Select Your Insulin Syringe (0.3ml, 0.5ml, or 1.0ml)</h3>
+                  <p className="text-base lg:text-lg text-ink/70 leading-relaxed font-light mb-8 max-w-3xl">
                     Begin by selecting the insulin syringe capacity you are using for this reconstitution. All three options use standard U-100 insulin syringes, where 1ml equals 100 IU. Your syringe size determines the maximum draw volume and the precision of your tick-mark readings.
                   </p>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse">
+                    <table className="w-full text-left border-collapse min-w-[600px]">
                       <thead>
-                        <tr className="border-b-2 border-ink">
-                          <th className="py-3 pr-8 text-xs font-mono uppercase tracking-widest text-ink/60">Syringe Size</th>
-                          <th className="py-3 pr-8 text-xs font-mono uppercase tracking-widest text-ink/60">IU Capacity</th>
-                          <th className="py-3 text-xs font-mono uppercase tracking-widest text-ink/60">Best Used For</th>
+                        <tr className="border-b border-ink/20">
+                          <th className="py-4 pr-8 text-sm uppercase tracking-widest text-ink font-medium">Syringe Size</th>
+                          <th className="py-4 pr-8 text-sm uppercase tracking-widest text-ink font-medium">IU Capacity</th>
+                          <th className="py-4 text-sm uppercase tracking-widest text-ink font-medium">Best Used For</th>
                         </tr>
                       </thead>
-                      <tbody className="font-light text-ink/80">
-                        <tr className="border-b border-ink/10">
-                          <td className="py-4 pr-8 font-sans text-lg">0.3 ML</td>
-                          <td className="py-4 pr-8 font-sans text-lg">30 IU (max)</td>
+                      <tbody className="font-light text-ink/70">
+                        <tr className="border-b border-ink/5">
+                          <td className="py-4 pr-8 text-base text-ink font-medium">0.3 ML</td>
+                          <td className="py-4 pr-8 text-base text-ink">30 IU (max)</td>
                           <td className="py-4 text-base">Micro-dose protocols requiring very precise low-volume draws</td>
                         </tr>
-                        <tr className="border-b border-ink/10">
-                          <td className="py-4 pr-8 font-sans text-lg">0.5 ML</td>
-                          <td className="py-4 pr-8 font-sans text-lg">50 IU (max)</td>
+                        <tr className="border-b border-ink/5">
+                          <td className="py-4 pr-8 text-base text-ink font-medium">0.5 ML</td>
+                          <td className="py-4 pr-8 text-base text-ink">50 IU (max)</td>
                           <td className="py-4 text-base">General-purpose research — the most common choice for peptide reconstitution</td>
                         </tr>
                         <tr>
-                          <td className="py-4 pr-8 font-sans text-lg">1.0 ML</td>
-                          <td className="py-4 pr-8 font-sans text-lg">100 IU (max)</td>
+                          <td className="py-4 pr-8 text-base text-ink font-medium">1.0 ML</td>
+                          <td className="py-4 pr-8 text-base text-ink">100 IU (max)</td>
                           <td className="py-4 text-base">Higher-volume draws or high-concentration solutions requiring larger measurements</td>
                         </tr>
                       </tbody>
@@ -592,126 +558,72 @@ export default function PeptideCalculatorPage() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </FadeUp>
 
             {/* Step 2 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-              className="sticky top-28 lg:top-[12.5rem] w-full rounded-[2.5rem] lg:rounded-[3.5rem] p-10 lg:p-16 border border-ink/5 bg-[#E5E9EF] shadow-[0_8px_40px_rgba(0,0,0,0.03)] overflow-hidden group mb-8 lg:mb-12"
-              style={{ zIndex: 20 }}
-            >
-              <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.4] mix-blend-multiply z-0">
-                <filter id="noiseStep2">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
-                </filter>
-                <rect width="100%" height="100%" filter="url(#noiseStep2)" />
-              </svg>
-              
-              <div className="relative z-10 grid grid-cols-1 md:grid-cols-[100px_1fr] lg:grid-cols-[160px_1fr] gap-8 lg:gap-16 items-stretch">
-                <div className="flex flex-row md:flex-col justify-between items-end md:items-start border-b md:border-b-0 md:border-r border-ink/10 pb-6 md:pb-0 md:pr-8">
-                  <span className="text-5xl lg:text-8xl font-sans text-ink tracking-tighter leading-none">02</span>
-                  <Beaker className="w-8 h-8 lg:w-12 lg:h-12 text-ink/30 mt-0 md:mt-12" strokeWidth={1} />
-                </div>
-                
-                <div className="flex flex-col justify-center py-2 lg:py-4">
-                  <h3 className="text-4xl lg:text-5xl font-sans text-ink mb-6 lg:mb-8 tracking-tight leading-[1.1]">Step 02: Enter Your Peptide Vial Amount (mg or mcg)</h3>
-                  <p className="text-lg lg:text-xl text-ink/70 leading-relaxed max-w-3xl font-light mb-4">
-                    Input the total peptide amount stated on your vial label. Use the mg/mcg toggle to match whatever unit your label uses. Most research peptide vials are labeled in milligrams (mg) — common sizes are 5mg and 10mg. If your label reads &ldquo;5,000 mcg&rdquo;, that is identical to 5mg. The calculator converts between units automatically.
+            <FadeUp>
+              <div className="grid grid-cols-1 lg:grid-cols-[100px_1fr] gap-8 items-start border-t border-ink/10 pt-12">
+                <span className="text-4xl lg:text-5xl font-sans text-red-400 tracking-tighter leading-none mt-1">02</span>
+                <div className="flex flex-col">
+                  <h3 className="text-2xl lg:text-3xl font-normal text-ink uppercase tracking-tight mb-6">Enter Your Peptide Vial Amount (mg or mcg)</h3>
+                  <p className="text-base lg:text-lg text-ink/70 leading-relaxed font-light mb-4 max-w-3xl">
+                    Input the total peptide amount stated on your vial label. Use the mg/mcg toggle to match whatever unit your label uses. Most research peptide vials are labeled in milligrams (mg) — common sizes are 5mg and 10mg. If your label reads "5,000 mcg", that is identical to 5mg. The calculator converts between units automatically.
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </FadeUp>
 
             {/* Step 3 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-              className="sticky top-36 lg:top-[17rem] w-full rounded-[2.5rem] lg:rounded-[3.5rem] p-10 lg:p-16 border border-ink/5 bg-[#E8EFE3] shadow-[0_8px_40px_rgba(0,0,0,0.03)] overflow-hidden group mb-8 lg:mb-12"
-              style={{ zIndex: 30 }}
-            >
-              <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.4] mix-blend-multiply z-0">
-                <filter id="noiseStep3">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
-                </filter>
-                <rect width="100%" height="100%" filter="url(#noiseStep3)" />
-              </svg>
-              
-              <div className="relative z-10 grid grid-cols-1 md:grid-cols-[100px_1fr] lg:grid-cols-[160px_1fr] gap-8 lg:gap-16 items-stretch">
-                <div className="flex flex-row md:flex-col justify-between items-end md:items-start border-b md:border-b-0 md:border-r border-ink/10 pb-6 md:pb-0 md:pr-8">
-                  <span className="text-5xl lg:text-8xl font-sans text-ink tracking-tighter leading-none">03</span>
-                  <Droplets className="w-8 h-8 lg:w-12 lg:h-12 text-ink/30 mt-0 md:mt-12" strokeWidth={1} />
-                </div>
-                
-                <div className="flex flex-col justify-center py-2 lg:py-4">
-                  <h3 className="text-4xl lg:text-5xl font-sans text-ink mb-6 lg:mb-8 tracking-tight leading-[1.1]">Step 03: Specify Your Bacteriostatic Water Volume (ml)</h3>
-                  <p className="text-lg lg:text-xl text-ink/70 leading-relaxed max-w-3xl font-light mb-4">
-                    Enter the volume of bacteriostatic water (BAC water) you will add to the vial during reconstitution. The most common research volumes are 1ml, 2ml, and 3ml. The amount of water you add directly determines the solution concentration: more water lowers concentration (larger draws per dose), less water raises concentration (smaller, more precise draws). Use the +1ML, +2ML, and +3ML shortcuts or enter a custom volume.
+            <FadeUp>
+              <div className="grid grid-cols-1 lg:grid-cols-[100px_1fr] gap-8 items-start border-t border-ink/10 pt-12">
+                <span className="text-4xl lg:text-5xl font-sans text-red-400 tracking-tighter leading-none mt-1">03</span>
+                <div className="flex flex-col">
+                  <h3 className="text-2xl lg:text-3xl font-normal text-ink uppercase tracking-tight mb-6">Specify Your Bacteriostatic Water Volume (ml)</h3>
+                  <p className="text-base lg:text-lg text-ink/70 leading-relaxed font-light mb-8 max-w-3xl">
+                    Enter the volume of bacteriostatic water (BAC water) you will add to the vial during reconstitution. The most common research volumes are 1ml, 2ml, and 3ml. The amount of water you add directly determines the solution concentration: more water lowers concentration (larger draws per dose), less water raises concentration (smaller, more precise draws).
                   </p>
-                  <div className="bg-white/60 border border-ink/10 rounded-2xl p-6 lg:p-8 mt-2">
-                    <p className="text-sm font-mono text-ink/60 uppercase tracking-widest mb-4">Concentration Formula</p>
-                    <p className="text-2xl lg:text-3xl font-sans text-ink tracking-tight">
-                      Concentration (mcg/ml) = <span className="text-gold italic">Peptide Amount (mcg)</span> ÷ <span className="text-gold italic">Bacteriostatic Water (ml)</span>
+                  <div className="bg-[#f4f7fb] border border-[#eef3fb] rounded-2xl p-6 lg:p-8">
+                    <p className="text-sm uppercase tracking-widest mb-4 font-medium text-ink/60">Concentration Formula</p>
+                    <p className="text-xl lg:text-2xl font-normal text-ink tracking-tight">
+                      Concentration (mcg/ml) = <span className="italic text-[#5984c4]">Peptide Amount (mcg)</span> ÷ <span className="italic text-[#5984c4]">Bacteriostatic Water (ml)</span>
                     </p>
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </FadeUp>
 
             {/* Step 4 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-              className="sticky top-44 lg:top-[21.5rem] w-full rounded-[2.5rem] lg:rounded-[3.5rem] p-10 lg:p-16 border border-ink/5 bg-[#F5F0E8] shadow-[0_8px_40px_rgba(0,0,0,0.03)] overflow-hidden group"
-              style={{ zIndex: 40 }}
-            >
-              <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.4] mix-blend-multiply z-0">
-                <filter id="noiseStep4">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
-                </filter>
-                <rect width="100%" height="100%" filter="url(#noiseStep4)" />
-              </svg>
-              
-              <div className="relative z-10 grid grid-cols-1 md:grid-cols-[100px_1fr] lg:grid-cols-[160px_1fr] gap-8 lg:gap-16 items-stretch">
-                <div className="flex flex-row md:flex-col justify-between items-end md:items-start border-b md:border-b-0 md:border-r border-ink/10 pb-6 md:pb-0 md:pr-8">
-                  <span className="text-5xl lg:text-8xl font-sans text-ink tracking-tighter leading-none">04</span>
-                  <Calculator className="w-8 h-8 lg:w-12 lg:h-12 text-ink/30 mt-0 md:mt-12" strokeWidth={1} />
-                </div>
-                
-                <div className="flex flex-col justify-center py-2 lg:py-4">
-                  <h3 className="text-4xl lg:text-5xl font-sans text-ink mb-6 lg:mb-8 tracking-tight leading-[1.1]">Step 04: Set Your Target Dose and Read the Calculation Results</h3>
-                  <p className="text-lg lg:text-xl text-ink/70 leading-relaxed max-w-3xl font-light mb-6">
-                    Enter your target research dose in either mg or mcg using the toggle. The calculator instantly outputs all four results. The Required Draw (IU) is the most important output — it is the exact tick mark on your syringe to draw to. All results update in real time as you adjust any input.
+            <FadeUp>
+              <div className="grid grid-cols-1 lg:grid-cols-[100px_1fr] gap-8 items-start border-t border-ink/10 pt-12">
+                <span className="text-4xl lg:text-5xl font-sans text-red-400 tracking-tighter leading-none mt-1">04</span>
+                <div className="flex flex-col">
+                  <h3 className="text-2xl lg:text-3xl font-normal text-ink uppercase tracking-tight mb-6">Set Your Target Dose and Read Results</h3>
+                  <p className="text-base lg:text-lg text-ink/70 leading-relaxed font-light mb-8 max-w-3xl">
+                    Enter your target research dose in either mg or mcg using the toggle. The calculator instantly outputs all four results. The Required Draw (IU) is the most important output — it is the exact tick mark on your syringe to draw to. All results update in real time.
                   </p>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse">
+                    <table className="w-full text-left border-collapse min-w-[600px]">
                       <thead>
-                        <tr className="border-b-2 border-ink">
-                          <th className="py-3 pr-8 text-xs font-mono uppercase tracking-widest text-ink/60">Output Field</th>
-                          <th className="py-3 text-xs font-mono uppercase tracking-widest text-ink/60">What It Tells You</th>
+                        <tr className="border-b border-ink/20">
+                          <th className="py-4 pr-8 text-sm uppercase tracking-widest text-ink font-medium">Output Field</th>
+                          <th className="py-4 text-sm uppercase tracking-widest text-ink font-medium">What It Tells You</th>
                         </tr>
                       </thead>
-                      <tbody className="font-light text-ink/80">
-                        <tr className="border-b border-ink/10">
-                          <td className="py-4 pr-8 font-sans text-lg">Required Draw (IU)</td>
+                      <tbody className="font-light text-ink/70">
+                        <tr className="border-b border-ink/5">
+                          <td className="py-4 pr-8 text-base text-ink font-medium">Required Draw (IU)</td>
                           <td className="py-4 text-base">The exact IU tick mark on your U-100 insulin syringe to draw to — this is your primary result</td>
                         </tr>
-                        <tr className="border-b border-ink/10">
-                          <td className="py-4 pr-8 font-sans text-lg">Solution Concentration (mcg/ml)</td>
+                        <tr className="border-b border-ink/5">
+                          <td className="py-4 pr-8 text-base text-ink font-medium">Solution Concentration</td>
                           <td className="py-4 text-base">How many micrograms of peptide are dissolved per milliliter of solution</td>
                         </tr>
-                        <tr className="border-b border-ink/10">
-                          <td className="py-4 pr-8 font-sans text-lg">Draw Volume (ml)</td>
+                        <tr className="border-b border-ink/5">
+                          <td className="py-4 pr-8 text-base text-ink font-medium">Draw Volume (ml)</td>
                           <td className="py-4 text-base">The precise volume of solution in milliliters to extract from the vial per dose</td>
                         </tr>
                         <tr>
-                          <td className="py-4 pr-8 font-sans text-lg">Total Doses Per Vial</td>
+                          <td className="py-4 pr-8 text-base text-ink font-medium">Total Doses Per Vial</td>
                           <td className="py-4 text-base">How many complete doses remain in the vial at your current dose and water volume settings</td>
                         </tr>
                       </tbody>
@@ -719,168 +631,113 @@ export default function PeptideCalculatorPage() {
                   </div>
                 </div>
               </div>
-            </motion.div>
-
+            </FadeUp>
           </div>
         </div>
       </section>
-
 
       {/* ============================================
           SECTION 3: UNDERSTANDING THE MATH
           ============================================ */}
-      <section className="py-24 lg:py-48 px-6 bg-ink text-white relative">
-        
-        {/* Noise */}
-        <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.08] mix-blend-overlay z-0">
-          <filter id="noiseMath">
-            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#noiseMath)" />
-        </svg>
-
-        <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16 lg:gap-24 items-start relative z-10">
+      <section className="bg-ink py-20 lg:py-32 px-4 md:px-8 lg:px-10">
+        <div className="max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20 items-start">
           
           {/* Left: Sticky Title */}
           <div className="lg:sticky lg:top-32">
             <FadeUp>
-              <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-gold mb-8">The Science</h2>
-              <h3 className="text-5xl lg:text-7xl font-sans mb-8 tracking-tight leading-[1.1]">The Science: Understanding Peptide Reconstitution Math</h3>
-              <p className="text-xl text-white/50 leading-relaxed max-w-md font-light">
-                Every calculation this tool produces is the output of a simple three-step formula chain. Understanding the arithmetic lets you verify any result independently — and makes you a more precise researcher. The entire reconstitution math reduces to three divisions and one multiplication.
+              <h2 className="text-[2.5rem] leading-[1.1] font-normal tracking-[-1.5px] text-white min-[480px]:text-[3rem] md:text-[4rem] lg:text-[4.5rem] uppercase mb-6">
+                The Science
+              </h2>
+              <p className="text-base lg:text-lg text-white/60 leading-relaxed font-light mb-8 max-w-md">
+                Every calculation this tool produces is the output of a simple three-step formula chain. Understanding the arithmetic lets you verify any result independently — and makes you a more precise researcher.
               </p>
             </FadeUp>
           </div>
 
-          {/* Right: Editorial Index List (Now Stackable Cards) */}
-          <div className="flex flex-col w-full pb-[20vh] relative">
-              
-              <motion.div 
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8 }}
-                className="sticky top-20 lg:top-32 w-full rounded-[2rem] lg:rounded-[3rem] p-8 lg:p-12 border border-white/10 bg-[#151515] shadow-2xl mb-6 lg:mb-8"
-                style={{ zIndex: 10 }}
-              >
-                <div className="flex flex-col md:flex-row gap-6 md:gap-10 md:items-start">
-                  <div className="text-gold/80 shrink-0 mt-1 bg-gold/10 p-4 rounded-2xl">
-                    <FlaskConical className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
-                  </div>
-                  <div className="flex flex-col gap-4">
-                    <h4 className="text-3xl lg:text-4xl font-sans tracking-tight text-white">Concentration Formula: Peptide (mcg) ÷ Bacteriostatic Water (ml)</h4>
-                    <p className="text-lg text-white/60 leading-relaxed font-light max-w-2xl">
-                      Divide the total peptide amount (converted to mcg) by the volume of bacteriostatic water you added (in ml). This gives you the solution concentration in mcg per ml. Example: A 5mg vial (5,000 mcg) reconstituted with 2ml of BAC water produces a concentration of <strong className="text-white/90 font-medium">2,500 mcg/ml</strong>. Every milliliter of that solution contains exactly 2,500 micrograms of peptide.
-                    </p>
-                  </div>
+          {/* Right: List */}
+          <div className="flex flex-col gap-12 lg:gap-16">
+            <FadeUp>
+              <div className="flex flex-col gap-4">
+                <div className="text-red-400 mb-2">
+                  <FlaskConical className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
                 </div>
-              </motion.div>
+                <h4 className="text-2xl lg:text-3xl font-normal uppercase tracking-tight text-white mb-2">Concentration Formula</h4>
+                <p className="text-base lg:text-lg text-white/60 leading-relaxed font-light">
+                  <strong className="text-white font-medium block mb-2">Peptide (mcg) ÷ Bacteriostatic Water (ml)</strong>
+                  Divide the total peptide amount by the volume of bacteriostatic water added. Example: A 5mg vial (5,000 mcg) reconstituted with 2ml of BAC water produces a concentration of 2,500 mcg/ml. Every milliliter contains exactly 2,500 micrograms of peptide.
+                </p>
+              </div>
+            </FadeUp>
 
-              <motion.div 
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8 }}
-                className="sticky top-28 lg:top-40 w-full rounded-[2rem] lg:rounded-[3rem] p-8 lg:p-12 border border-white/10 bg-[#1A1A1A] shadow-2xl mb-6 lg:mb-8"
-                style={{ zIndex: 20 }}
-              >
-                <div className="flex flex-col md:flex-row gap-6 md:gap-10 md:items-start">
-                  <div className="text-gold/80 shrink-0 mt-1 bg-gold/10 p-4 rounded-2xl">
-                    <Droplets className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
-                  </div>
-                  <div className="flex flex-col gap-4">
-                    <h4 className="text-3xl lg:text-4xl font-sans tracking-tight text-white">Draw Volume: Target Dose (mcg) ÷ Concentration (mcg/ml)</h4>
-                    <p className="text-lg text-white/60 leading-relaxed font-light max-w-2xl">
-                      Divide your target research dose (in mcg) by the solution concentration (mcg/ml) to get the exact volume to draw in milliliters. Continuing the example: A target dose of 250 mcg at a 2,500 mcg/ml concentration requires a draw volume of exactly <strong className="text-white/90 font-medium">0.1 ml</strong>. This is the volume of liquid to extract from the vial per dose.
-                    </p>
-                  </div>
+            <FadeUp>
+              <div className="flex flex-col gap-4 border-t border-white/10 pt-12">
+                <div className="text-red-400 mb-2">
+                  <Droplets className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
                 </div>
-              </motion.div>
+                <h4 className="text-2xl lg:text-3xl font-normal uppercase tracking-tight text-white mb-2">Draw Volume</h4>
+                <p className="text-base lg:text-lg text-white/60 leading-relaxed font-light">
+                  <strong className="text-white font-medium block mb-2">Target Dose (mcg) ÷ Concentration (mcg/ml)</strong>
+                  Divide your target research dose by the solution concentration to get the exact volume to draw in milliliters. Example: A target dose of 250 mcg at a 2,500 mcg/ml concentration requires a draw volume of exactly 0.1 ml.
+                </p>
+              </div>
+            </FadeUp>
 
-              <motion.div 
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8 }}
-                className="sticky top-36 lg:top-48 w-full rounded-[2rem] lg:rounded-[3rem] p-8 lg:p-12 border border-white/10 bg-[#1F1F1F] shadow-2xl mb-6 lg:mb-8"
-                style={{ zIndex: 30 }}
-              >
-                <div className="flex flex-col md:flex-row gap-6 md:gap-10 md:items-start">
-                  <div className="text-gold/80 shrink-0 mt-1 bg-gold/10 p-4 rounded-2xl">
-                    <Syringe className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
-                  </div>
-                  <div className="flex flex-col gap-4">
-                    <h4 className="text-3xl lg:text-4xl font-sans tracking-tight text-white">Syringe IU Conversion: Draw Volume (ml) × 100</h4>
-                    <p className="text-lg text-white/60 leading-relaxed font-light max-w-2xl">
-                      Multiply your draw volume in ml by 100 to convert to International Units (IU) as marked on a standard U-100 insulin syringe. From the example: 0.1 ml × 100 = <strong className="text-white/90 font-medium">10 IU</strong>. You draw the syringe plunger back to the &apos;10&apos; tick mark. On every U-100 syringe, 1 ml = 100 IU, making this a straightforward single multiplication.
-                    </p>
-                  </div>
+            <FadeUp>
+              <div className="flex flex-col gap-4 border-t border-white/10 pt-12">
+                <div className="text-red-400 mb-2">
+                  <Syringe className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
                 </div>
-              </motion.div>
+                <h4 className="text-2xl lg:text-3xl font-normal uppercase tracking-tight text-white mb-2">Syringe IU Conversion</h4>
+                <p className="text-base lg:text-lg text-white/60 leading-relaxed font-light">
+                  <strong className="text-white font-medium block mb-2">Draw Volume (ml) × 100</strong>
+                  Multiply your draw volume in ml by 100 to convert to International Units (IU) as marked on a standard U-100 insulin syringe. Example: 0.1 ml × 100 = 10 IU. You draw the syringe plunger back to the '10' tick mark.
+                </p>
+              </div>
+            </FadeUp>
 
-              <motion.div 
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8 }}
-                className="sticky top-44 lg:top-56 w-full rounded-[2rem] lg:rounded-[3rem] p-8 lg:p-12 border border-white/10 bg-[#252525] shadow-2xl mb-6 lg:mb-8"
-                style={{ zIndex: 40 }}
-              >
-                <div className="flex flex-col md:flex-row gap-6 md:gap-10 md:items-start">
-                  <div className="text-gold/80 shrink-0 mt-1 bg-gold/10 p-4 rounded-2xl">
-                    <BookOpen className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
-                  </div>
-                  <div className="flex flex-col gap-4">
-                    <h4 className="text-3xl lg:text-4xl font-sans tracking-tight text-white">Total Doses Per Vial: Water Added (ml) ÷ Draw Volume (ml)</h4>
-                    <p className="text-lg text-white/60 leading-relaxed font-light max-w-2xl">
-                      Divide the total reconstituted volume (the milliliters of BAC water you added) by the draw volume per dose to get the total number of doses available. From the example: 2 ml ÷ 0.1 ml = <strong className="text-white/90 font-medium">20 complete doses</strong> from one vial at this rate. This tells you exactly how long your current vial will last at your research protocol.
-                    </p>
-                  </div>
+            <FadeUp>
+              <div className="flex flex-col gap-4 border-t border-white/10 pt-12">
+                <div className="text-red-400 mb-2">
+                  <BookOpen className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
                 </div>
-              </motion.div>
-
+                <h4 className="text-2xl lg:text-3xl font-normal uppercase tracking-tight text-white mb-2">Total Doses Per Vial</h4>
+                <p className="text-base lg:text-lg text-white/60 leading-relaxed font-light">
+                  <strong className="text-white font-medium block mb-2">Water Added (ml) ÷ Draw Volume (ml)</strong>
+                  Divide the total reconstituted volume by the draw volume per dose to get the total number of doses available. Example: 2 ml ÷ 0.1 ml = 20 complete doses.
+                </p>
+              </div>
+            </FadeUp>
           </div>
-          
         </div>
       </section>
-
 
       {/* ============================================
           SECTION 4: COMMON RECONSTITUTION SCENARIOS
           ============================================ */}
-      <section className="py-24 lg:py-48 px-6 bg-white relative">
-        
-        {/* Dot Grid */}
-        <div className="absolute inset-0 pointer-events-none z-0 opacity-30" style={{ backgroundImage: "radial-gradient(#D6CDB8 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
-
-        {/* Background Watermark */}
-        <div className="absolute bottom-[5%] right-0 pointer-events-none z-0 overflow-hidden">
-          <span className="text-[14vw] font-sans text-ink/[0.02] leading-none select-none tracking-tighter whitespace-nowrap">
-            SCENARIOS
-          </span>
-        </div>
-
-        <div className="max-w-[1100px] mx-auto relative z-10">
-          
-          <FadeUp className="text-center mb-16 lg:mb-24">
-            <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-gold mb-6 font-bold">Quick Reference</h2>
-            <h3 className="text-4xl lg:text-6xl font-sans text-ink tracking-tight mb-6">Common Reconstitution Scenarios</h3>
-            <p className="text-lg lg:text-xl text-ink/50 font-light leading-relaxed max-w-2xl mx-auto">
-              Pre-calculated reference table for the most frequently used peptide vial sizes, water volumes, and dose amounts. All values assume a standard U-100 syringe.
-            </p>
+      <section className="bg-[#f4f7fb] text-ink py-20 lg:py-32 px-4 md:px-8 lg:px-10">
+        <div className="max-w-[1400px] mx-auto w-full">
+          <FadeUp>
+            <div className="flex flex-col mb-12">
+              <h2 className="text-[2.5rem] leading-[1.1] font-normal tracking-[-1.5px] text-ink min-[480px]:text-[3rem] md:text-[4rem] lg:text-[4.5rem] uppercase mb-6">
+                Common Scenarios
+              </h2>
+              <p className="text-base lg:text-lg text-ink-muted leading-relaxed font-light max-w-2xl">
+                Pre-calculated reference table for the most frequently used peptide vial sizes, water volumes, and dose amounts. All values assume a standard U-100 syringe.
+              </p>
+            </div>
           </FadeUp>
 
-          <FadeUp delay={0.1}>
-            <div className="overflow-x-auto rounded-[2rem] border border-ink/10 shadow-[0_8px_40px_rgba(0,0,0,0.03)]">
+          <FadeUp delay={0.2}>
+            <div className="overflow-x-auto bg-white rounded-3xl border border-[#eef3fb] p-6 lg:p-8 shadow-sm">
               <table className="w-full text-left border-collapse min-w-[700px]">
                 <thead>
-                  <tr className="bg-ink text-white">
-                    <th className="py-5 px-6 text-xs font-mono uppercase tracking-widest font-normal">Vial Size</th>
-                    <th className="py-5 px-6 text-xs font-mono uppercase tracking-widest font-normal">Bac Water</th>
-                    <th className="py-5 px-6 text-xs font-mono uppercase tracking-widest font-normal">Concentration</th>
-                    <th className="py-5 px-6 text-xs font-mono uppercase tracking-widest font-normal">Dose (mcg)</th>
-                    <th className="py-5 px-6 text-xs font-mono uppercase tracking-widest font-normal">Draw (IU)</th>
-                    <th className="py-5 px-6 text-xs font-mono uppercase tracking-widest font-normal">Total Doses</th>
+                  <tr className="border-b border-ink/10">
+                    <th className="py-5 pr-6 text-sm uppercase tracking-widest text-ink font-medium">Vial Size</th>
+                    <th className="py-5 pr-6 text-sm uppercase tracking-widest text-ink font-medium">Bac Water</th>
+                    <th className="py-5 pr-6 text-sm uppercase tracking-widest text-ink font-medium">Concentration</th>
+                    <th className="py-5 pr-6 text-sm uppercase tracking-widest text-ink font-medium">Dose (mcg)</th>
+                    <th className="py-5 pr-6 text-sm uppercase tracking-widest text-ink font-medium">Draw (IU)</th>
+                    <th className="py-5 text-sm uppercase tracking-widest text-ink font-medium">Total Doses</th>
                   </tr>
                 </thead>
                 <tbody className="font-light">
@@ -894,11 +751,11 @@ export default function PeptideCalculatorPage() {
                     ['10 mg', '3 ml', '3,333 mcg/ml', '300', '9 IU', '30'],
                     ['15 mg', '3 ml', '5,000 mcg/ml', '500', '10 IU', '30'],
                   ].map((row, i) => (
-                    <tr key={i} className={`border-b border-ink/5 ${i % 2 === 0 ? 'bg-white' : 'bg-[#FAFAFA]'} hover:bg-gold/5 transition-colors`}>
+                    <tr key={i} className="border-b border-ink/5 hover:bg-[#f4f7fb]/50 transition-colors">
                       {row.map((cell, j) => (
-                        <td key={j} className={`py-4 px-6 ${j === 4 ? 'font-sans text-lg text-gold font-medium' : 'text-ink/70'}`}>
-                          {cell}
-                        </td>
+                         <td key={j} className={`py-5 pr-6 ${j === 4 ? 'font-medium text-ink' : 'text-ink/70'}`}>
+                           {cell}
+                         </td>
                       ))}
                     </tr>
                   ))}
@@ -909,136 +766,120 @@ export default function PeptideCalculatorPage() {
         </div>
       </section>
 
-
       {/* ============================================
           SECTION 5: STORAGE & HANDLING GUIDE
           ============================================ */}
-      <section className="py-24 lg:py-48 px-6 bg-white relative border-t border-ink/5">
-        
-        {/* Rotating Ring */}
-        <motion.div 
-          animate={{ rotate: -360 }}
-          transition={{ duration: 200, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-[10%] -left-[15%] w-[60vw] h-[60vw] border-[1px] border-ink/5 rounded-full pointer-events-none z-0"
-        />
-
-        <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16 lg:gap-24 items-start relative z-10">
+      <section className="bg-white text-ink py-20 lg:py-32 px-4 md:px-8 lg:px-10 border-t border-[#eef3fb]">
+        <div className="max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20 items-start">
           
           {/* Left: Sticky Title */}
           <div className="lg:sticky lg:top-32">
             <FadeUp>
-              <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-gold mb-8 font-bold">Best Practices</h2>
-              <h3 className="text-5xl lg:text-7xl font-sans mb-8 tracking-tight leading-[1.1] text-ink">Peptide Storage & Handling — Before and After Reconstitution</h3>
-              <p className="text-xl text-ink/50 leading-relaxed max-w-md font-light">
-                Correct storage and sterile technique are as important as accurate dosing calculations. Improper storage degrades peptide potency; improper handling introduces contamination. Follow these four protocols for every reconstitution.
+              <h2 className="text-[2.5rem] leading-[1.1] font-normal tracking-[-1.5px] text-ink min-[480px]:text-[3rem] md:text-[4rem] lg:text-[4.5rem] uppercase mb-6">
+                Best Practices
+              </h2>
+              <p className="text-base lg:text-lg text-ink-muted leading-relaxed font-light max-w-md">
+                Correct storage and sterile technique are as important as accurate dosing calculations. Improper storage degrades peptide potency; improper handling introduces contamination.
               </p>
             </FadeUp>
           </div>
 
-          {/* Right: Editorial Index List */}
-          <div className="flex flex-col w-full">
-            <StaggerChildren className="w-full">
-              
-              <motion.div variants={staggerItemVariants} className="group border-t border-ink/10 py-12 flex flex-col md:flex-row gap-6 md:gap-12 md:items-start hover:border-gold/30 transition-colors duration-500">
-                <div className="text-gold/60 shrink-0 mt-2">
-                  <Thermometer className="w-6 h-6 md:w-8 md:h-8 group-hover:scale-110 transition-transform duration-500" strokeWidth={1.5} />
+          {/* Right: List */}
+          <div className="flex flex-col gap-12">
+             <FadeUp delay={0.1}>
+              <div className="flex flex-col md:flex-row gap-6 md:gap-10 border-t border-ink/10 pt-10">
+                <div className="text-red-400 shrink-0">
+                  <Thermometer className="w-8 h-8" strokeWidth={1.5} />
                 </div>
                 <div className="flex flex-col gap-4">
-                  <h4 className="text-3xl lg:text-4xl font-sans tracking-tight text-ink group-hover:text-gold transition-colors duration-500">Before Reconstitution: Store Lyophilized Peptides at −20°C</h4>
-                  <p className="text-lg text-ink/50 leading-relaxed font-light max-w-2xl">
-                    Store unreconstituted (lyophilized) peptide powder in a freezer at −20°C or below for long-term stability. Lyophilized peptides are structurally resilient in freeze-dried form — brief exposure to room temperature during shipping does not cause significant degradation. Avoid repeated freeze-thaw cycles, which degrade peptide structure over time.
+                  <h4 className="text-2xl lg:text-3xl font-normal uppercase tracking-tight text-ink">Before Reconstitution</h4>
+                  <p className="text-base lg:text-lg text-ink/70 leading-relaxed font-light">
+                    Store unreconstituted (lyophilized) peptide powder in a freezer at −20°C or below for long-term stability. Avoid repeated freeze-thaw cycles, which degrade peptide structure over time.
                   </p>
                 </div>
-              </motion.div>
-
-              <motion.div variants={staggerItemVariants} className="group border-t border-ink/10 py-12 flex flex-col md:flex-row gap-6 md:gap-12 md:items-start hover:border-gold/30 transition-colors duration-500">
-                <div className="text-gold/60 shrink-0 mt-2">
-                  <Droplets className="w-6 h-6 md:w-8 md:h-8 group-hover:scale-110 transition-transform duration-500" strokeWidth={1.5} />
+              </div>
+            </FadeUp>
+            <FadeUp delay={0.2}>
+              <div className="flex flex-col md:flex-row gap-6 md:gap-10 border-t border-ink/10 pt-10">
+                <div className="text-red-400 shrink-0">
+                  <Droplets className="w-8 h-8" strokeWidth={1.5} />
                 </div>
                 <div className="flex flex-col gap-4">
-                  <h4 className="text-3xl lg:text-4xl font-sans tracking-tight text-ink group-hover:text-gold transition-colors duration-500">After Reconstitution: Refrigerate at 2–8°C, Use Within 4 Weeks</h4>
-                  <p className="text-lg text-ink/50 leading-relaxed font-light max-w-2xl">
-                    Once mixed with bacteriostatic water, store the reconstituted vial upright in a standard refrigerator at 2–8°C. Most reconstituted research peptides remain stable for 2 to 4 weeks, though this varies by peptide sequence. Bacteriostatic water extends shelf life significantly by inhibiting microbial growth via its 0.9% benzyl alcohol content. Never freeze a reconstituted peptide solution.
+                  <h4 className="text-2xl lg:text-3xl font-normal uppercase tracking-tight text-ink">After Reconstitution</h4>
+                  <p className="text-base lg:text-lg text-ink/70 leading-relaxed font-light">
+                    Store the reconstituted vial upright in a standard refrigerator at 2–8°C. Most reconstituted research peptides remain stable for 2 to 4 weeks. Never freeze a reconstituted peptide solution.
                   </p>
                 </div>
-              </motion.div>
-
-              <motion.div variants={staggerItemVariants} className="group border-t border-ink/10 py-12 flex flex-col md:flex-row gap-6 md:gap-12 md:items-start hover:border-gold/30 transition-colors duration-500">
-                <div className="text-gold/60 shrink-0 mt-2">
-                  <Syringe className="w-6 h-6 md:w-8 md:h-8 group-hover:scale-110 transition-transform duration-500" strokeWidth={1.5} />
+              </div>
+            </FadeUp>
+            <FadeUp delay={0.3}>
+              <div className="flex flex-col md:flex-row gap-6 md:gap-10 border-t border-ink/10 pt-10">
+                <div className="text-red-400 shrink-0">
+                  <Syringe className="w-8 h-8" strokeWidth={1.5} />
                 </div>
                 <div className="flex flex-col gap-4">
-                  <h4 className="text-3xl lg:text-4xl font-sans tracking-tight text-ink group-hover:text-gold transition-colors duration-500">Reconstitution Technique: Swirl Gently — Never Shake</h4>
-                  <p className="text-lg text-ink/50 leading-relaxed font-light max-w-2xl">
-                    Always inject bacteriostatic water slowly against the inner glass wall of the vial — never directly onto the lyophilized cake. Allow the water to run down and dissolve the peptide gradually. If the powder does not dissolve immediately, gently roll or swirl the vial for 1–2 minutes. Do not shake or agitate forcefully — this denatures (structurally damages) the peptide chains and compromises batch integrity.
+                  <h4 className="text-2xl lg:text-3xl font-normal uppercase tracking-tight text-ink">Reconstitution Technique</h4>
+                  <p className="text-base lg:text-lg text-ink/70 leading-relaxed font-light">
+                    Always inject bacteriostatic water slowly against the inner glass wall of the vial. Gently roll or swirl the vial for 1–2 minutes. Do not shake or agitate forcefully — this denatures the peptide chains.
                   </p>
                 </div>
-              </motion.div>
-
-              <motion.div variants={staggerItemVariants} className="group border-t border-b border-ink/10 py-12 flex flex-col md:flex-row gap-6 md:gap-12 md:items-start hover:border-gold/30 transition-colors duration-500">
-                <div className="text-gold/60 shrink-0 mt-2">
-                  <AlertTriangle className="w-6 h-6 md:w-8 md:h-8 group-hover:scale-110 transition-transform duration-500" strokeWidth={1.5} />
+              </div>
+            </FadeUp>
+            <FadeUp delay={0.4}>
+              <div className="flex flex-col md:flex-row gap-6 md:gap-10 border-t border-ink/10 pt-10">
+                <div className="text-red-400 shrink-0">
+                  <AlertTriangle className="w-8 h-8" strokeWidth={1.5} />
                 </div>
                 <div className="flex flex-col gap-4">
-                  <h4 className="text-3xl lg:text-4xl font-sans tracking-tight text-ink group-hover:text-gold transition-colors duration-500">Contamination Prevention: Sterile Technique for Research Use</h4>
-                  <p className="text-lg text-ink/50 leading-relaxed font-light max-w-2xl">
-                    Swab the vial&apos;s rubber stopper with a sterile alcohol prep pad before every extraction. Use a fresh, sterile syringe and needle for each draw. Work in a clean, dust-free environment. If the reconstituted solution becomes cloudy, discolored, or contains visible particulates, discard the vial and reconstitute a fresh one. Compromised solution integrity means compromised research results.
+                  <h4 className="text-2xl lg:text-3xl font-normal uppercase tracking-tight text-ink">Contamination Prevention</h4>
+                  <p className="text-base lg:text-lg text-ink/70 leading-relaxed font-light">
+                    Swab the vial's rubber stopper with a sterile alcohol prep pad before every extraction. Use a fresh, sterile syringe and needle for each draw. Work in a clean, dust-free environment.
                   </p>
                 </div>
-              </motion.div>
-
-            </StaggerChildren>
+              </div>
+            </FadeUp>
           </div>
-          
         </div>
       </section>
-
 
       {/* ============================================
           SECTION 6: UNIT CONVERSION REFERENCE
           ============================================ */}
-      <section className="py-24 lg:py-36 px-6 bg-ink text-white relative">
-        
-        <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.08] mix-blend-overlay z-0">
-          <filter id="noiseConv">
-            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#noiseConv)" />
-        </svg>
-
-        <div className="max-w-[1100px] mx-auto relative z-10">
-          
-          <FadeUp className="text-center mb-16 lg:mb-24">
-            <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-gold mb-6 font-bold">Reference Tables</h2>
-            <h3 className="text-4xl lg:text-6xl font-sans tracking-tight mb-6">Unit Conversions for Peptide Research — mcg, mg, ml & IU Reference</h3>
-            <p className="text-lg text-white/50 font-light leading-relaxed max-w-xl mx-auto">
-              Quick-reference conversion tables for the most commonly used units in research peptide calculation. Bookmark this page for fast lookups during reconstitution.
-            </p>
+      <section className="bg-ink text-white py-20 lg:py-32 px-4 md:px-8 lg:px-10">
+        <div className="max-w-[1400px] mx-auto w-full">
+          <FadeUp>
+            <div className="flex flex-col mb-16">
+              <h2 className="text-[2.5rem] leading-[1.1] font-normal tracking-[-1.5px] text-white min-[480px]:text-[3rem] md:text-[4rem] lg:text-[4.5rem] uppercase mb-6">
+                Unit Conversions
+              </h2>
+              <p className="text-base lg:text-lg text-white/60 leading-relaxed font-light max-w-2xl">
+                Quick-reference conversion tables for the most commonly used units in research peptide calculation. Bookmark this page for fast lookups during reconstitution.
+              </p>
+            </div>
           </FadeUp>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Mass Conversions */}
             <FadeUp delay={0.1}>
-              <div className="border border-white/10 rounded-[2rem] p-8 lg:p-10 hover:border-gold/20 transition-colors">
-                <h4 className="text-2xl font-sans mb-8 tracking-tight">Mass Conversions: mg to mcg Reference Table</h4>
+              <div>
+                <h4 className="text-2xl font-normal uppercase tracking-tight mb-8 text-white">mg to mcg</h4>
                 <table className="w-full text-left border-collapse">
                   <tbody className="font-light text-white/70">
                     <tr className="border-b border-white/10">
-                      <td className="py-3 pr-4 font-sans text-lg text-white">1 mg</td>
-                      <td className="py-3 text-base">=  1,000 mcg</td>
+                      <td className="py-4 pr-4 text-lg text-white">1 mg</td>
+                      <td className="py-4 text-base">=  1,000 mcg</td>
                     </tr>
                     <tr className="border-b border-white/10">
-                      <td className="py-3 pr-4 font-sans text-lg text-white">0.1 mg</td>
-                      <td className="py-3 text-base">=  100 mcg</td>
+                      <td className="py-4 pr-4 text-lg text-white">0.1 mg</td>
+                      <td className="py-4 text-base">=  100 mcg</td>
                     </tr>
                     <tr className="border-b border-white/10">
-                      <td className="py-3 pr-4 font-sans text-lg text-white">0.01 mg</td>
-                      <td className="py-3 text-base">=  10 mcg</td>
+                      <td className="py-4 pr-4 text-lg text-white">0.01 mg</td>
+                      <td className="py-4 text-base">=  10 mcg</td>
                     </tr>
                     <tr>
-                      <td className="py-3 pr-4 font-sans text-lg text-white">0.001 mg</td>
-                      <td className="py-3 text-base">=  1 mcg</td>
+                      <td className="py-4 pr-4 text-lg text-white">0.001 mg</td>
+                      <td className="py-4 text-base">=  1 mcg</td>
                     </tr>
                   </tbody>
                 </table>
@@ -1047,35 +888,33 @@ export default function PeptideCalculatorPage() {
 
             {/* Volume Conversions */}
             <FadeUp delay={0.2}>
-              <div className="border border-white/10 rounded-[2rem] p-8 lg:p-10 hover:border-gold/20 transition-colors">
-                <h4 className="text-2xl font-sans mb-8 tracking-tight">Syringe Volume Reference: ml to IU on U-100 Syringe</h4>
+              <div>
+                <h4 className="text-2xl font-normal uppercase tracking-tight mb-8 text-white">ml to IU (U-100)</h4>
                 <table className="w-full text-left border-collapse">
                   <tbody className="font-light text-white/70">
                     <tr className="border-b border-white/10">
-                      <td className="py-3 pr-4 font-sans text-lg text-white">1 ml</td>
-                      <td className="py-3 text-base">=  100 IU (on U-100)</td>
+                      <td className="py-4 pr-4 text-lg text-white">1 ml</td>
+                      <td className="py-4 text-base">=  100 IU</td>
                     </tr>
                     <tr className="border-b border-white/10">
-                      <td className="py-3 pr-4 font-sans text-lg text-white">0.5 ml</td>
-                      <td className="py-3 text-base">=  50 IU (on U-100)</td>
+                      <td className="py-4 pr-4 text-lg text-white">0.5 ml</td>
+                      <td className="py-4 text-base">=  50 IU</td>
                     </tr>
                     <tr className="border-b border-white/10">
-                      <td className="py-3 pr-4 font-sans text-lg text-white">0.1 ml</td>
-                      <td className="py-3 text-base">=  10 IU (on U-100)</td>
+                      <td className="py-4 pr-4 text-lg text-white">0.1 ml</td>
+                      <td className="py-4 text-base">=  10 IU</td>
                     </tr>
                     <tr>
-                      <td className="py-3 pr-4 font-sans text-lg text-white">0.01 ml</td>
-                      <td className="py-3 text-base">=  1 IU (on U-100)</td>
+                      <td className="py-4 pr-4 text-lg text-white">0.01 ml</td>
+                      <td className="py-4 text-base">=  1 IU</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </FadeUp>
-
           </div>
         </div>
       </section>
-
 
       {/* ============================================
           SECTION 7: FAQ
@@ -1085,69 +924,70 @@ export default function PeptideCalculatorPage() {
       {/* ============================================
           SECTION 8: SHOP CTA STRIP
           ============================================ */}
-      <section className="py-24 lg:py-36 px-6 bg-ink text-white relative border-t border-white/5">
-        <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.08] mix-blend-overlay z-0">
-          <filter id="noiseShop">
-            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#noiseShop)" />
-        </svg>
+      <section className="py-24 px-4 md:px-8 lg:px-10 bg-white relative overflow-hidden">
+        <FadeUp>
+          <div className="relative w-full max-w-[1400px] mx-auto bg-gradient-to-b from-[#f4f7fb] to-white border border-[#eef3fb] rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-sm px-6 py-16 lg:py-24 flex flex-col items-center justify-center text-center">
+            
+            {/* Background Image */}
+            <Image 
+              src="https://res.cloudinary.com/denskvdyt/image/upload/v1782167603/cta-image_b7krl0.webp"
+              alt="CTA Background"
+              fill
+              className="object-cover object-center pointer-events-none z-0"
+            />
+            
+            <div className="relative z-10 w-full max-w-4xl flex flex-col items-center gap-6">
+              <h2 className="text-[2.5rem] leading-[1.1] font-normal tracking-[-1.5px] text-ink min-[480px]:text-[3rem] md:text-[4rem] uppercase">
+                Shop Research Peptides
+              </h2>
+              
+              <p className="text-base lg:text-lg text-ink-muted leading-relaxed font-light max-w-2xl mx-auto mb-8">
+                Every compound in our catalog is US-synthesized, independently verified at ≥99% HPLC purity, and ships with a lot-specific Certificate of Analysis.
+              </p>
+              
+              <Link href="/shop" className="group">
+                <button className="rounded-xl px-8 py-5 bg-ink text-white hover:bg-ink/90 transition-colors duration-300 font-medium text-base uppercase tracking-widest flex items-center justify-center gap-3">
+                  Browse Catalog
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </Link>
 
-        <div className="max-w-[1280px] mx-auto relative z-10">
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
-            <div className="lg:w-1/2">
-              <FadeUp>
-                <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-gold mb-6 font-bold">Research Peptides</h2>
-                <h3 className="text-4xl lg:text-6xl font-sans tracking-tight mb-6">Shop Research Peptides Used in These Calculations</h3>
-                <p className="text-lg text-white/50 font-light leading-relaxed mb-8">
-                  Every compound in our catalog is US-synthesized, independently verified at ≥99% HPLC purity, and ships with a lot-specific Certificate of Analysis. Browse the peptides most commonly calculated on this page.
-                </p>
-                <Link href="/shop" className="inline-flex items-center gap-4 bg-gold hover:bg-white text-ink px-8 py-4 rounded-full font-mono text-sm uppercase tracking-widest transition-colors">
-                  Browse Our Full Catalog <ArrowLeft className="w-4 h-4 rotate-180" />
-                </Link>
-              </FadeUp>
-            </div>
-
-            <div className="lg:w-1/2 w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                { name: 'BPC-157 Blend — 5MG', btn: 'Shop BPC-157', link: '/shop/bpc-157-blend' },
-                { name: 'TB-500 — 5MG', btn: 'Shop TB-500', link: '/shop/tb-500' },
-                { name: 'GHK-Cu — 50MG', btn: 'Shop GHK-Cu', link: '/shop/ghk-cu' },
-                { name: 'Semaglutide — 5MG', btn: 'Shop Semaglutide', link: '/shop/semaglutide' }
-              ].map((prod, idx) => (
-                <FadeUp key={idx} delay={0.1 * idx}>
-                  <Link href={prod.link} className="block group bg-[#151515] hover:bg-[#222] border border-white/5 hover:border-gold/30 rounded-2xl p-6 transition-all duration-300 h-full flex flex-col justify-between min-h-[160px]">
-                    <span className="font-sans text-xl text-white mb-6 block leading-tight">{prod.name}</span>
-                    <span className="text-gold group-hover:text-white font-mono text-xs uppercase tracking-widest flex items-center gap-2 transition-colors mt-auto">
-                      {prod.btn} <ArrowLeft className="w-3 h-3 rotate-180 group-hover:translate-x-1 transition-transform" />
-                    </span>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 w-full">
+                 {[
+                  { name: 'BPC-157 Blend', link: '/shop/bpc-157-blend' },
+                  { name: 'TB-500', link: '/shop/tb-500' },
+                  { name: 'GHK-Cu', link: '/shop/ghk-cu' },
+                  { name: 'Semaglutide', link: '/shop/semaglutide' }
+                ].map((prod, idx) => (
+                  <Link key={idx} href={prod.link} className="bg-white rounded-xl border border-[#eef3fb] p-4 text-center hover:border-[#5984c4] transition-colors">
+                    <span className="text-sm font-medium text-ink uppercase tracking-wide">{prod.name}</span>
                   </Link>
-                </FadeUp>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        </FadeUp>
       </section>
 
       {/* ============================================
           SECTION 9: LEGAL DISCLAIMER
           ============================================ */}
-      <section className="py-16 lg:py-24 px-6 bg-white border-t border-ink/5 relative">
-        <div className="max-w-[900px] mx-auto relative z-10">
+      <section className="bg-white py-16 lg:py-24 px-4 md:px-8 lg:px-10 border-t border-[#eef3fb]">
+        <div className="max-w-[1400px] mx-auto w-full">
           <FadeUp>
             <div className="flex flex-col md:flex-row items-start gap-8 md:gap-16">
-              <div className="shrink-0 flex flex-col items-start">
-                <ShieldCheck className="w-12 h-12 text-gold mb-4" strokeWidth={1} />
-                <span className="text-xs font-mono uppercase tracking-[0.2em] text-ink/40">Legal Disclaimer</span>
+              <div className="shrink-0 flex items-center gap-4">
+                <ShieldCheck className="w-8 h-8 text-red-400" strokeWidth={1.5} />
+                <span className="text-sm uppercase tracking-widest text-ink font-medium">Legal Disclaimer</span>
               </div>
-              <div className="flex-1">
-                <p className="text-lg text-ink/60 leading-relaxed font-light mb-6">
+              <div className="flex-1 flex flex-col gap-6">
+                <p className="text-sm md:text-base text-ink/60 leading-relaxed font-light">
                   All products referenced on this page and throughout The LooksMaxxing Lab are intended exclusively for <strong className="text-ink font-medium">in-vitro laboratory research purposes only</strong>. They are not intended for human consumption, diagnostic, therapeutic, or any other clinical use.
                 </p>
-                <p className="text-lg text-ink/60 leading-relaxed font-light mb-6">
+                <p className="text-sm md:text-base text-ink/60 leading-relaxed font-light">
                   This calculator is provided strictly as a <strong className="text-ink font-medium">theoretical research tool</strong> to assist researchers in calculating reconstitution volumes and concentrations for their laboratory guidelines. It does not constitute medical advice, and no information provided should be interpreted as guidance for human administration.
                 </p>
-                <p className="text-lg text-ink/60 leading-relaxed font-light">
+                <p className="text-sm md:text-base text-ink/60 leading-relaxed font-light">
                   By using this tool, you confirm that you are a qualified researcher and that all products will be used in strict compliance with applicable federal, state, and local regulations. The LooksMaxxing Lab assumes no liability for misuse of this tool or any products listed on our platform.
                 </p>
               </div>
